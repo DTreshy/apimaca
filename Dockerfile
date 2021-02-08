@@ -10,6 +10,4 @@ COPY . .
 
 ENV NODE_ENV production
 
-RUN npm build
-
-CMD ["npm", "start"]
+CMD ["npm", "build", "&&", "npm", "start"]
