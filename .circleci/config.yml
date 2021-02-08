@@ -7,8 +7,6 @@ workflows:
       - deploy:
           context:
             - docker
-          requires:
-            - build
           filters:
             branches:
               only: master
