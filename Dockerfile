@@ -3,14 +3,13 @@ FROM strapi/base
 WORKDIR /my-path
 
 COPY ./package.json ./
-COPY ./yarn.lock ./
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 
 ENV NODE_ENV production
 
-RUN yarn build
+RUN npm build
 
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
