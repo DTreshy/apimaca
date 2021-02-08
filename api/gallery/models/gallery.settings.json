@@ -17,7 +17,7 @@
     },
     "Subtitle": {
       "type": "string",
-      "maxLength": 50
+      "maxLength": 70
     },
     "Text": {
       "type": "richtext",
