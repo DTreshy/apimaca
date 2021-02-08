@@ -1,0 +1,32 @@
+version: 2.1
+orbs:
+  docker: circleci/docker@1.5.0
+workflows:
+  build-deploy:
+    jobs:
+      - deploy:
+          context:
+            - docker
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+
+jobs:
+  deploy:
+    machine: true
+    steps:
+      - checkout
+      - docker/install-docker-tools
+      - run:
+          name: Login to Docker
+          command: docker login -u=$DOCKER_LOGIN -p=$DOCKER_PASSWORD registry.dsprojects.pl
+      - docker/build:
+          image: strapi1
+          registry: registry.dsprojects.pl
+          tag: latest
+      - docker/push:
+          image: strapi1
+          registry: registry.dsprojects.pl
+          tag: latest
